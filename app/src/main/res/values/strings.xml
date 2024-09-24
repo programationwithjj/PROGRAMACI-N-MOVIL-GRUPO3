@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Rastreador de gastos personales</string>
+    <string name="home_button_text">Crear gasto</string>
+    <string name="home_budget_title">Mi presupuesto</string>
+    <string name="home_budget_remaining_text">$3,580,000</string>
+    <string name="home_budget_section_heading">Gastos</string>
+</resources>
