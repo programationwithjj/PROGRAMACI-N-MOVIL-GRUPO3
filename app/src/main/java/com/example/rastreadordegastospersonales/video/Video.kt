@@ -17,7 +17,6 @@ import androidx.media3.ui.PlayerView
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.rastreadordegastospersonales.R
 
-
 @Composable
 fun TutorialScreen() {
     val context = LocalContext.current
@@ -25,10 +24,9 @@ fun TutorialScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()) // Habilitar desplazamiento vertical
+            .verticalScroll(rememberScrollState())
             .padding(vertical = 8.dp)
     ) {
-        // Primer Título
         Text(
             text = "Tutoriales",
             color = Color(0xFF6B6091),
@@ -37,13 +35,11 @@ fun TutorialScreen() {
                 .padding(start = 16.dp, top = 8.dp, bottom = 32.dp)
         )
 
-        // Primer Card con reproductor de video local
         VideoCard(
             context = context,
-            videoResId = R.raw.metodos_ahorro // Reemplaza con el nombre de tu video en res/raw
+            videoResId = R.raw.metodos_ahorro
         )
 
-        // Segundo Título
         Text(
             text = "5 Métodos de ahorro",
             color = Color(0xFF6B6091),
@@ -51,7 +47,6 @@ fun TutorialScreen() {
             modifier = Modifier.padding(start = 16.dp, top = 8.dp)
         )
 
-        // Descripción
         Text(
             text = "Aprende 5 métodos de ahorro que verdaderamente funcionan y cómo aplicarlos en tu vida diaria para convertirlos en poderosos hábitos de gestión financiera exitosa....",
             color = Color(0xFF49454F),
@@ -60,13 +55,11 @@ fun TutorialScreen() {
                 .padding(start = 16.dp, top = 0.dp, bottom = 32.dp)
         )
 
-        // Segundo Card con reproductor de video local
         VideoCard(
             context = context,
             videoResId = R.raw.tutorial
         )
 
-        // Tercer Título
         Text(
             text = "Educación financiera para toda la vida",
             color = Color(0xFF6B6091),
@@ -74,7 +67,6 @@ fun TutorialScreen() {
             modifier = Modifier.padding(start = 16.dp, top = 8.dp)
         )
 
-        // Descripción
         Text(
             text = "Aprende ¿Por qué la Educación Financiera es indispensable para los ciudadanos? y como evitar errores que se generan por el desconocimiento...",
             color = Color(0xFF49454F),
@@ -87,7 +79,6 @@ fun TutorialScreen() {
 
 @Composable
 fun VideoCard(context: Context, videoResId: Int) {
-    // Crear el ExoPlayer
     val exoPlayer = remember {
         ExoPlayer.Builder(context).build().apply {
             val mediaItem = MediaItem.fromUri("android.resource://${context.packageName}/$videoResId")
@@ -96,7 +87,6 @@ fun VideoCard(context: Context, videoResId: Int) {
         }
     }
 
-    // Destruir el ExoPlayer cuando el Composable salga de la composición
     DisposableEffect(
         AndroidView(
             factory = {
