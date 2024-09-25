@@ -17,6 +17,7 @@ import androidx.media3.ui.PlayerView
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.rastreadordegastospersonales.R
 
+
 @Composable
 fun TutorialScreen() {
     val context = LocalContext.current
@@ -39,7 +40,7 @@ fun TutorialScreen() {
         // Primer Card con reproductor de video local
         VideoCard(
             context = context,
-            videoResId = R.raw.tutorial // Reemplaza con el nombre de tu video en res/raw
+            videoResId = R.raw.metodos_ahorro // Reemplaza con el nombre de tu video en res/raw
         )
 
         // Segundo Título
@@ -62,7 +63,7 @@ fun TutorialScreen() {
         // Segundo Card con reproductor de video local
         VideoCard(
             context = context,
-            videoResId = R.raw.metodos_ahorro 
+            videoResId = R.raw.tutorial
         )
 
         // Tercer Título
