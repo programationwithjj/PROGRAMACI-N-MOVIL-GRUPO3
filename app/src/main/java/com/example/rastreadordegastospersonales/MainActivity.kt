@@ -112,7 +112,7 @@ fun NavigationDrawer(navController: NavHostController, onItemClick: () -> Unit) 
                             .clickable {
                                 when (item) {
                                     "Home" -> navController.navigate("home")
-                                    "Tutorial" -> navController.navigate("tutorial")
+                                    "Tutoriales" -> navController.navigate("tutorial")
                                 }
                                 onItemClick()
                             }
