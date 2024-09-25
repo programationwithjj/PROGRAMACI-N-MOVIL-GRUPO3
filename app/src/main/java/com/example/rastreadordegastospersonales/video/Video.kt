@@ -62,7 +62,7 @@ fun TutorialScreen() {
         // Segundo Card con reproductor de video local
         VideoCard(
             context = context,
-            videoResId = R.raw.metodos_ahorro // Reemplaza con el nombre de tu video en res/raw
+            videoResId = R.raw.metodos_ahorro 
         )
 
         // Tercer Título
