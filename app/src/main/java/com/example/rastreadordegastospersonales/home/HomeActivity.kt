@@ -20,6 +20,8 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -31,22 +33,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.rastreadordegastospersonales.R
 import com.example.rastreadordegastospersonales.model.Expense
 import com.example.rastreadordegastospersonales.ui.theme.BlackColor
 import com.example.rastreadordegastospersonales.ui.theme.BorderColor
 import com.example.rastreadordegastospersonales.ui.theme.PrimaryColor
 import com.example.rastreadordegastospersonales.ui.theme.SecondaryColor
+import com.example.rastreadordegastospersonales.viewModel.ExpenseViewModel
 import java.text.NumberFormat
 import java.util.Locale
 
 @Composable
-fun HomeScreen() {
-    val sampleExpenses = listOf(
-        Expense("Compra en Carulla", "Mercado", "2024-09-01", 150000.0),
-        Expense("Cena en restaurante", "Comida", "2024-09-05", 80000.0),
-        Expense("Gasolina", "Transporte", "2024-09-10", 60000.0)
-    )
+fun HomeScreen(navController: NavHostController, viewModel: ExpenseViewModel) {
+    val expenses by viewModel.expenses.collectAsState()
 
     Column(
         modifier = Modifier
@@ -54,17 +54,19 @@ fun HomeScreen() {
             .padding(0.dp)
     ) {
         Spacer(modifier = Modifier.height(16.dp))
-        PrimaryButton(text = "Crear gasto", icon = Icons.Default.Add)
+        PrimaryButton(text = "Crear gasto", icon = Icons.Default.Add, onClick = {
+            navController.navigate("createExpense")
+        })
         Spacer(modifier = Modifier.height(18.dp))
         BudgetInfo(3580000)
-        Expenses(sampleExpenses)
+        Expenses(expenses)
     }
 }
 
 @Composable
-fun PrimaryButton(text: String, icon: ImageVector) {
+fun PrimaryButton(text: String, icon: ImageVector, onClick: () -> Unit) {
     Button(
-        onClick = { /* Ir a pantalla de creación de Gasto */ },
+        onClick = onClick,
         colors = ButtonDefaults.buttonColors(containerColor = PrimaryColor),
         shape = RoundedCornerShape(18.dp),
         modifier = Modifier
@@ -167,7 +169,7 @@ fun ExpenseRow(expense: Expense) {
                     modifier = Modifier.size(80.dp)
                 )
             } else {
-                Icon (
+                Icon(
                     painter = painterResource(id = R.drawable.ic_expense_default),
                     contentDescription = null,
                     tint = SecondaryColor,
